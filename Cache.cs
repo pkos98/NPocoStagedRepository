@@ -2,7 +2,7 @@
 
 namespace NPocoCachedRepository
 {
-    internal class Cache<T>
+    public class Cache<T>
     {
         public IList<T> ObjectsToRemove { get; } = new List<T>();
         public IList<T> ObjectsToAdd { get; } = new List<T>();

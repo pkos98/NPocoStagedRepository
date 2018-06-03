@@ -7,7 +7,7 @@ namespace NPocoCachedRepository
     public class CachedRepositoryBase<T>: IRepository<T>
     {
 
-        internal Cache<T> _cache;
+        protected Cache<T> _cache;
         protected IDatabase _dataBase;
         protected string _tableName = ((TableNameAttribute) typeof (T).GetCustomAttributes(typeof (TableNameAttribute), true)[0]).Value;
 
