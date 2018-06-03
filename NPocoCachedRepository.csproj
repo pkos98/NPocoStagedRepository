@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NPocoCachedRepository</PackageId>
     <Description>Generic Repository implementation using NPoco and basic caching</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Patrick Kostas (pkos98)</Authors>
     <RepositoryUrl>https://github.com/pkos98/NPocoCachedRepository</RepositoryUrl>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
