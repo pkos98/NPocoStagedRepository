@@ -1,7 +1,13 @@
+## NPocoCachedRepository
 This repository implementation provides basic CRUD operations on a database using NPoco. 
-It caches all changes until you explicitly save them to the db!
+It caches all changes until you explicitly save them to the db!  
+Nuget-URL: https://www.nuget.org/packages/NPocoCachedRepository/1.0.0
 
->Usage:  
+### Installation:  
+* Using *Package-Manager*: `Install-Package NPocoCachedRepository`
+* Using *.NET-CLI*: `dotnet add package NPocoCachedRepository`  
+
+### Usage:  
 ```
 var repo = new CachedRepositoryBase<MovieModel>(db);
 // CRUD operations
@@ -17,5 +23,5 @@ repo.Remove(siliconValleyS01E02);
 repo.Rollback();
 ```
 
->Dependencies:
-* NPoco
+### Dependencies:
+* NPoco *(currently 3.9.3)*
