@@ -14,7 +14,7 @@ var repo = new CachedRepositoryBase<MovieModel>(db);
 repo.Add(lotrPartOne);
 repo.Remove(gotS01E01);
 repo.Update(siliconValleyS01E01);
-var allMovies = repo.GetAll();
+IEnumerable<MovieModel> allMovies = repo.GetAll();
 // Apply changes to db!
 repo.Save();
 
