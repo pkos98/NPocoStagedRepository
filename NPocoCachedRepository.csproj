@@ -4,10 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NPocoCachedRepository</PackageId>
-    <Description>Generic Repository implementation using NPOco and basic caching</Description>
+    <Description>Generic Repository implementation using NPoco and basic caching</Description>
     <Version>1.0.0</Version>
     <Authors>Patrick Kostas (pkos98)</Authors>
     <RepositoryUrl>https://github.com/pkos98/NPocoCachedRepository</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://opensource.org/licenses/GPL-3.0</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
