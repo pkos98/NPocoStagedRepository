@@ -18,7 +18,7 @@ var allMovies = repo.GetAll();
 // Apply changes to db!
 repo.Save();
 
-// Aboort changes => Rollback!
+// Abort changes => Rollback!
 repo.Remove(siliconValleyS01E02);
 repo.Rollback();
 ```
