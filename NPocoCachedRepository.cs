@@ -48,7 +48,7 @@ namespace NPocoCachedRepository
             var objList = _dataBase.Fetch<T>("SELECT * FROM " + _tableName);
             return ApplyCachedChanges(objList);
         }
-        public virtual IQueryable<T> QueryAll()
+        public virtual IQueryable<T> QueryDb()
         {
             var objects = _dataBase.Query<T>("SELECT * FROM " + _tableName).AsQueryable<T>();
             return objects;

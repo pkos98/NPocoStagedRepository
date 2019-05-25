@@ -11,7 +11,7 @@ namespace NPocoCachedRepository
         void RemoveById(object id);
         T GetById(object id);
         IEnumerable<T> GetAll();
-        IQueryable<T> QueryAll();
+        IQueryable<T> QueryDb();
 
         void Save();
         void Rollback();
