@@ -9,12 +9,13 @@ namespace NPocoCachedRepository
 
         protected Cache<T> _cache;
         protected IDatabase _dataBase;
-        protected string _tableName = ((TableNameAttribute) typeof (T).GetCustomAttributes(typeof (TableNameAttribute), true)[0]).Value;
+        protected readonly string _tableName;
 
         public NPocoCachedRepository(IDatabase db)
         {
             _dataBase = db;
             _cache = new Cache<T>();
+            _tableName = _dataBase.PocoDataFactory.ForType(typeof(T)).TableInfo.TableName;
         }
 
         public virtual object Add(T instance)
