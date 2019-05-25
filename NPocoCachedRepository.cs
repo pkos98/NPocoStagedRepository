@@ -45,8 +45,8 @@ namespace NPocoCachedRepository
         }
         public virtual IEnumerable<T> GetAll()
         {
-            var objects = _dataBase.Fetch<T>("SELECT * FROM " + _tableName);
-            return objects;
+            var objList = _dataBase.Fetch<T>("SELECT * FROM " + _tableName);
+            return ApplyCachedChanges(objList);
         }
         public virtual IQueryable<T> QueryAll()
         {
@@ -72,7 +72,27 @@ namespace NPocoCachedRepository
         {
             _cache.Clear();
         }
-        
+
+        private IList<T> ApplyCachedChanges(IList<T> objList)
+        {
+
+            foreach (var objToAdd in _cache.ObjectsToAdd)
+            {
+                objList.Add(objToAdd);
+            }
+            foreach (var objToUpdate in _cache.ObjectsToUpdate)
+            {
+                objList.Remove(objToUpdate);
+                objList.Add(objToUpdate);
+            }    
+            foreach (var objToRemove in _cache.ObjectsToRemove)
+            {
+                if (objList.Contains(objToRemove))
+                    objList.Remove(objToRemove);
+            }
+
+            return objList;
+        }
 
     }
 }
