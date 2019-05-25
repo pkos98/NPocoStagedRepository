@@ -9,7 +9,7 @@ Nuget-URL: https://www.nuget.org/packages/NPocoCachedRepository/1.0.0
 
 ### Usage:  
 ```
-var repo = new CachedRepositoryBase<MovieModel>(db);
+var repo = new NpocoCachedRepository<MovieModel>(db);
 // CRUD operations
 repo.Add(lotrPartOne);
 repo.Remove(gotS01E01);
@@ -18,8 +18,8 @@ IEnumerable<MovieModel> allMovies = repo.GetAll();
 // Apply changes to db!
 repo.Save();
 
-// Abort changes => Rollback!
 repo.Remove(siliconValleyS01E02);
+// Abort changes since I didnt watch it yet => Rollback!
 repo.Rollback();
 ```
 
