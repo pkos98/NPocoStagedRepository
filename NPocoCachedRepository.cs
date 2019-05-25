@@ -4,12 +4,11 @@ using NPoco;
 
 namespace NPocoCachedRepository
 {
-    public class NPocoCachedRepository<T>: ICachedRepository<T>
+    public class NPocoCachedRepository<T> : ICachedRepository<T>
     {
-
+        protected readonly string _tableName;
         protected Cache<T> _cache;
         protected IDatabase _dataBase;
-        protected readonly string _tableName;
 
         public NPocoCachedRepository(IDatabase db)
         {
@@ -23,6 +22,7 @@ namespace NPocoCachedRepository
             _cache.Add(instance);
             return instance;
         }
+
         public virtual void Update(T instance)
         {
             _cache.Update(instance);
@@ -32,9 +32,10 @@ namespace NPocoCachedRepository
         {
             _cache.Remove(instance);
         }
+
         public virtual void RemoveById(object id)
         {
-            T instance = GetById(id);
+            var instance = GetById(id);
             if (instance != null)
                 _cache.Remove(instance);
         }
@@ -43,14 +44,16 @@ namespace NPocoCachedRepository
         {
             return _dataBase.SingleById<T>(id);
         }
+
         public virtual IEnumerable<T> GetAll()
         {
             var objList = _dataBase.Fetch<T>("SELECT * FROM " + _tableName);
             return ApplyCachedChanges(objList);
         }
+
         public virtual IQueryable<T> QueryDb()
         {
-            var objects = _dataBase.Query<T>("SELECT * FROM " + _tableName).AsQueryable<T>();
+            var objects = _dataBase.Query<T>("SELECT * FROM " + _tableName).AsQueryable();
             return objects;
         }
 
@@ -66,8 +69,10 @@ namespace NPocoCachedRepository
                     _dataBase.Delete<T>(deleteObj);
                 transaction.Complete();
             }
+
             _cache.Clear();
         }
+
         public virtual void Rollback()
         {
             _cache.Clear();
@@ -75,24 +80,19 @@ namespace NPocoCachedRepository
 
         private IList<T> ApplyCachedChanges(IList<T> objList)
         {
+            foreach (var objToAdd in _cache.ObjectsToAdd) objList.Add(objToAdd);
 
-            foreach (var objToAdd in _cache.ObjectsToAdd)
-            {
-                objList.Add(objToAdd);
-            }
             foreach (var objToUpdate in _cache.ObjectsToUpdate)
             {
                 objList.Remove(objToUpdate);
                 objList.Add(objToUpdate);
-            }    
+            }
+
             foreach (var objToRemove in _cache.ObjectsToRemove)
-            {
                 if (objList.Contains(objToRemove))
                     objList.Remove(objToRemove);
-            }
 
             return objList;
         }
-
     }
 }

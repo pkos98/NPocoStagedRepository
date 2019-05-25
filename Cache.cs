@@ -15,6 +15,7 @@ namespace NPocoCachedRepository
             if (!ObjectsToAdd.Contains(instance))
                 ObjectsToAdd.Add(instance);
         }
+
         public void Remove(T instance)
         {
             if (ObjectsToAdd.Contains(instance))
@@ -24,17 +25,18 @@ namespace NPocoCachedRepository
             if (!ObjectsToRemove.Contains(instance))
                 ObjectsToRemove.Add(instance);
         }
+
         public void Update(T instance)
         {
             if (!ObjectsToUpdate.Contains(instance))
                 ObjectsToUpdate.Add(instance);
         }
 
-        public void Clear() {
+        public void Clear()
+        {
             ObjectsToAdd.Clear();
             ObjectsToRemove.Clear();
             ObjectsToUpdate.Clear();
         }
-
     }
 }
