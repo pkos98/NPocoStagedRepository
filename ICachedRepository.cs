@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace NPocoCachedRepository
 {
-    public interface IRepository<T>
+    public interface ICachedRepository<T>
     {
         object Add(T instance);
         void Update(T instance);

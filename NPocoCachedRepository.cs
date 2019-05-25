@@ -4,14 +4,14 @@ using NPoco;
 
 namespace NPocoCachedRepository
 {
-    public class CachedRepositoryBase<T>: IRepository<T>
+    public class NPocoCachedRepository<T>: ICachedRepository<T>
     {
 
         protected Cache<T> _cache;
         protected IDatabase _dataBase;
         protected string _tableName = ((TableNameAttribute) typeof (T).GetCustomAttributes(typeof (TableNameAttribute), true)[0]).Value;
 
-        public CachedRepositoryBase(IDatabase db)
+        public NPocoCachedRepository(IDatabase db)
         {
             _dataBase = db;
             _cache = new Cache<T>();
