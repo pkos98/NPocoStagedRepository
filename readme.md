@@ -1,4 +1,4 @@
-## NPocoCachedRepository
+## NPocoStagedRepository
 This repository implementation provides basic CRUD operations on a database using NPoco. 
 It caches all changes until you explicitly save them to the db!  
 Nuget-URL: https://www.nuget.org/packages/NPocoCachedRepository/1.0.0
